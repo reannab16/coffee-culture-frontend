@@ -4,9 +4,9 @@ import { primary, secondary } from "@/themes/customs/palette";
 
 export default function Home() {
   return (
-    <main className="flex min-h-[calc(100vh-48px)] flex-col items-center justify-center w-full">
-      <div className="flex h-[calc(100vh-48px)] items-center justify-start container">
-        <div className="flex flex-col items-start justify-center gap-y-2 px-16">
+    <main className="flex min-h-[calc(100vh-60px)] flex-col items-center justify-center w-full mt-[60px]">
+      <div className="flex h-[calc(100vh-60px)] items-center justify-start container ">
+        <div className="flex flex-col items-start justify-center gap-y-2 px-32 -mt-5">
           <div className="uppercase text-md text-[var(--darkBrown)] opacity-50">
             Digital subscription & loyalty
           </div>
@@ -61,11 +61,12 @@ export default function Home() {
           </div>
         </div>
         <img
-          src="https://raw.githubusercontent.com/reannab16/coffee-culture-frontend/main/public/hero.png"
+          src="hero.png"
           alt=""
-          className="absolute h-screen w-auto right-0 -z-10"
+          className="absolute h-screen w-auto right-0 -z-10 pr-20"
         />
       </div>
+      <div className="h-screen"></div>
     </main>
   );
 }
