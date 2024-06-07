@@ -1,10 +1,11 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { LongLogo } from "../icons";
 import Button from "@mui/material/Button";
 import { AppBar, alpha, Slide, Toolbar, useScrollTrigger } from "@mui/material";
 import { primary } from "@/themes/customs/palette";
 import useWindowDimensions from "@/utils/window";
+import { useRouter } from "next/navigation";
 
 // const inter = Inter({ subsets: ["latin"] });
 interface Props {
@@ -16,6 +17,7 @@ export default function NavBar(props: Props) {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const { width } = useWindowDimensions() ?? { width: 0 };
   const [visible, setVisible] = useState(false);
+  const router = useRouter();
 
   const handleScroll = () => {
     if (window.scrollY > 56) {
@@ -37,7 +39,6 @@ export default function NavBar(props: Props) {
   });
 
   const HideOnScroll = ({ children }: { children: React.ReactElement }) => {
-  
     return (
       <Slide appear={false} direction="down" in={!visible}>
         {children}
@@ -45,19 +46,22 @@ export default function NavBar(props: Props) {
     );
   };
 
-
-
-
   return (
     <>
       <HideOnScroll {...props}>
         <AppBar
-          className="flex items-center justify-center bg-[var(--backgroundColour)] p-4"
+        sx={{
+          display: "flex",
+          backgroundColor: primary.background,
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "16px",
+        }}
           elevation={0}
         >
           <div className="container flex items-center justify-between relative">
             <LongLogo className="h-6 w-auto" />
-            <div className="flex items-center justify-center gap-x-1 absolute left-0 right-0">
+            <div className="md:flex items-center justify-center gap-x-1 absolute left-0 right-0 hidden">
               {navLinks.map((link) => {
                 return (
                   <Button
@@ -70,6 +74,9 @@ export default function NavBar(props: Props) {
                       borderRadius: "9999px",
                       paddingX: "16px",
                       ":hover": {},
+                    }}
+                    onClick={() => {
+                      router.push(link.path);
                     }}
                   >
                     {link.title}
@@ -116,7 +123,7 @@ const navLinks = [
   },
   {
     title: "Guide",
-    path: "/",
+    path: "https://www.coffee-culture.uk/cafeguide",
   },
   {
     title: "Contact Us",
